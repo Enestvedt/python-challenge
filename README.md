@@ -1,2 +1,2 @@
 # python-challenge
-python script to analyze simple financial data
+python scripts to analyze simple financial data and poll data
