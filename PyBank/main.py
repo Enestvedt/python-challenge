@@ -50,7 +50,7 @@ with open(csv_path, 'r') as csv_file:
     mn_index = p_deltas.index(mn)
     mn_date = dates[mn_index + 1]
     
-    #format and print results
+    #format results
     analysis = (f"""
     Financial Analysis
     -------------------------------
@@ -60,9 +60,11 @@ with open(csv_path, 'r') as csv_file:
     Greatest Increase in Profits:  {mx_date}  ({"${:,.2f}".format(mx)})
     Greatest Decrease in Profits: {mn_date}({"${:,.2f}".format(mn)}) """)
     
+    #create a txt file / write results / close file
     txt_path = os.path.join("analysis", "results.txt")
     txt_file = open(txt_path, 'w')
     txt_file.write("String Variable: {}".format(analysis))
     txt_file.close()
-
+    
+    #print results to terminal
     print(analysis)
