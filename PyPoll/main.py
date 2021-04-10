@@ -21,10 +21,6 @@ with open(csv_path) as csv_file:
 
     candidate_list = list(set(candidates))
 
-    #I used this to calculate the max but couldn't figure out how to print/export the data cleanly
-    vote_tally = dict((x, ["{:.0%}".format(candidates.count(x)/total_votes), candidates.count(x)]) for x in candidate_list)
-
-    #instead of using a dictionary (above - I couldn't make it work) I switched to lists
     #use comprehension to tally the count of each candidate name an calculate percent 
     vtally = [[x, "{:.0%}".format(candidates.count(x)/total_votes), candidates.count(x)] for x in candidate_list]
 
@@ -32,9 +28,10 @@ with open(csv_path) as csv_file:
     for i in range(0, len(vtally)):
         globals()[f"candidate{i}"] = f"{vtally[i][0]}:  {vtally[i][1]}    ({vtally[i][2]})"
 
-    #this works but I want to change it.
-    winner = max(vote_tally, key=vote_tally.get)
-
+    #searches for max value in nested list returns as a list
+    w1 = max(vtally, key=lambda x: x[1])
+    winner = w1[0]
+    
 #format results text 
 prt_rslt = (f"""
 Election Results
